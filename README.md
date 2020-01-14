@@ -29,7 +29,7 @@ consideration as you plan:
 - [ ] Great apis to use are [Dark Sky](https://darksky.net/dev) for actual weather information, and the [geocoding section of
 the Mapbox api](https://docs.mapbox.com/api/search/#forward-geocoding) for obtaining coordinates. You will need to obtain a *free* API Key for each service.
 - [ ] Remember, API keys are private. Keep them private. Place them in an `.env` file and use them via `process.env`. Here is a 
-(*great* article by John Papa)[https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786] if you need help!
+[*great* article by John Papa](https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786) if you need help!
 - [ ] You need to parse your argument out of the command line. Here's some information about [process.argv](https://nodejs.org/docs/latest/api/process.html#process_process_argv) to help. There are parsing packages you can download (and you can write your own to use
 in Tier 3), but you do NOT need to go through all of that for this project.
 

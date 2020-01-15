@@ -39,6 +39,7 @@ The following are required to finish the project.
 
 - [ ] A user should be able to type in `node app.js bucharest` and have the current weather printed to the console.
 - [ ] Weather needs to include location, the temperature (F and C), current conditions, and future conditions.
+- [ ] Make sure that you handle errors! Account for an API not responding, etc.
 - [ ] Your API Keys should NOT be on GitHub, put them in an `.env` file. 
 - [ ] Your project files should all be in a GitHub repository with clear instructions on how to set up a local environment.
 - [ ] Make sure that your `.env` and `node_modules` are in your `.gitignore` instead of on GitHub.

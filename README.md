@@ -19,6 +19,19 @@ You'll get comfortable with importing and exporting functions, using npm modules
 the server side, and hopefuly even more as you explore Node.js. If you already have a lot of experience with Node.js, this will be a great opportunity to show it off and to bring your project to an even higher level by tackling the optional features, or by moving on to
 the Tier 3 project and its options.
 
+## About Chingu
+
+If you aren’t yet a member of Chingu we invite you to join us. We help our 
+members transform what they’ve learned in courses & tutorials into the 
+practical experience employers need and want.
+
+Our remote team projects let you refine your technical skills and put them 
+into practice while gaining new “soft” skills like communication, 
+collaboration, and Agile project management. The types of skills that 
+help real-world teams get things done!
+
+You can learn more and join us at [chingu.io](https://chingu.io).
+
 ## Instructions & Considerations
 
 This project was designed with Node.js in mind. That being said, if you would like to use a different server-side tool,

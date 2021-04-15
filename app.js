@@ -1,8 +1,17 @@
-var greeting = "Welcome to the Weather API!";
+var greeting = "Welcome to Your Favorite Weather API!";
 
 console.log(greeting);
 
 const http = require('http');
+const fetch = require('node-fetch');
+
+const url = 'http://api.open-notify.org/astros.json';
+
+fetch(url).then((response)=>{
+    return (response.json());
+}).then((data=>{
+    console.log(data);
+}));
 
 const server = http.createServer(function(req, res){
     res.setHeader('Content-type', 'application/json');

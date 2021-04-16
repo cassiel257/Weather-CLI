@@ -4,8 +4,12 @@ console.log(greeting);
 
 const http = require('http');
 const fetch = require('node-fetch');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/paris.json?access_token=pk.eyJ1IjoiaW5maW5pdGV1c2VybmFtZSIsImEiOiJja25qbjY3b2YwMDJvMnVxdmtqcmE5MHM2In0.Ke1ijexIWlsMVAF4LeVIzg';
+
+const mapbox_key = process.env.MAPBOX_API_KEY;
+const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/paris.json?access_token=${mapbox_key}`;
 
 fetch(url).then((response)=>{
     return (response.json());
@@ -13,7 +17,9 @@ fetch(url).then((response)=>{
     console.log(JSON.stringify(data));
 }));
 
-const url2 = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,minutely&appid=852e338b96d2abd5afdb4e3bf6f207d5';
+const weather_key = process.env.WEATHER_API_KEY;
+
+const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,minutely&appid=${weather_key}`;
 
 fetch(url2).then((response)=>{
     return (response.json());

@@ -12,20 +12,33 @@ const mapbox_key = process.env.MAPBOX_API_KEY;
 const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/paris.json?access_token=${mapbox_key}`;
 
 fetch(url).then((response)=>{
-    return (response.json());
-}).then((data=>{
+    if (response.ok){
+        return response.json();
+    } else {
+        return Promise.reject(response);
+    }
+}).then(data=>{
     console.log(JSON.stringify(data));
-}));
+}).catch(function (err){
+    console.warn("An error occurred", err);
+});
 
 const weather_key = process.env.WEATHER_API_KEY;
 
 const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,minutely&appid=${weather_key}`;
 
 fetch(url2).then((response)=>{
-    return (response.json());
-}).then((data=>{
+    if (response.ok){
+        return response.json();
+    }
+    else{
+        return Promise.reject(response);
+    }
+}).then(data=>{
     console.log(JSON.stringify(data));
-}));
+}).catch(function(err){
+    console.warn("An error occurred", err);
+});
 
 const server = http.createServer(function(req, res){
     res.setHeader('Content-type', 'application/json');

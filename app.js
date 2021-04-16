@@ -10,7 +10,7 @@ const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/paris.json?access
 fetch(url).then((response)=>{
     return (response.json());
 }).then((data=>{
-    console.log(data);
+    console.log(JSON.stringify(data));
 }));
 
 const url2 = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,minutely&appid=852e338b96d2abd5afdb4e3bf6f207d5';
@@ -18,7 +18,7 @@ const url2 = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=
 fetch(url2).then((response)=>{
     return (response.json());
 }).then((data=>{
-    console.log(data);
+    console.log(JSON.stringify(data));
 }));
 
 const server = http.createServer(function(req, res){

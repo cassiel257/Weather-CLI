@@ -1,15 +1,24 @@
+
+//Redo colors without a module?
+
+//const entry = process.argv.forEach((val)=>{
+//    return val;
+//});
+
+var colors = require('colors');
+
+const entry = process.argv[2];
 var greeting = "Welcome to Your Favorite Weather API!";
 
-console.log(greeting);
+console.log(greeting.bgMagenta);
 
 const http = require('http');
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
 dotenv.config();
 
-
 const mapbox_key = process.env.MAPBOX_API_KEY;
-const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/paris.json?access_token=${mapbox_key}`;
+const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${entry}.json?access_token=${mapbox_key}`;
 
 fetch(url).then((response)=>{
     if (response.ok){
@@ -18,7 +27,7 @@ fetch(url).then((response)=>{
         return Promise.reject(response);
     }
 }).then(data=>{
-    console.log(JSON.stringify(data));
+    console.log('.......This is the Mapbox API data......'.magenta, JSON.stringify(data['features'][1]));
 }).catch(function (err){
     console.warn("An error occurred", err);
 });
@@ -35,7 +44,7 @@ fetch(url2).then((response)=>{
         return Promise.reject(response);
     }
 }).then(data=>{
-    console.log(JSON.stringify(data));
+    console.log('......Here is the Weather API data......'.magenta,JSON.stringify(data['current'].weather));
 }).catch(function(err){
     console.warn("An error occurred", err);
 });

@@ -1,0 +1,25 @@
+{
+  "name": "soloproject-tier2-chinguweather",
+  "version": "1.0.0",
+  "description": "basic weather app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cassiel257/soloproject-tier2-chinguweather.git"
+  },
+  "author": "tiffany.udoh@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cassiel257/soloproject-tier2-chinguweather/issues"
+  },
+  "homepage": "https://github.com/cassiel257/soloproject-tier2-chinguweather#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.1"
+  }
+}

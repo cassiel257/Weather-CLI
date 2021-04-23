@@ -52,16 +52,17 @@ fetch(url2).then((response)=>{
     console.warn("An error occurred", err);
 });
 
-const server = http.createServer(function(req, res){
-    res.setHeader('Content-type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin',"*");
-    res.writeHead(200);
+// web server starter code sample
+//const server = http.createServer(function(req, res){
+//     res.setHeader('Content-type', 'application/json');
+//     res.setHeader('Access-Control-Allow-Origin',"*");
+//     res.writeHead(200);
 
-    let dataObject = {"id":7, "city":"Paris","weather":"rainy","breakfast":"crepes", "forecast":"stylishly gloomy"};
-    let data = JSON.stringify(dataObject);
-    res.end(data);
-});
+//     let dataObject = {"id":7, "city":"Paris","weather":"rainy","breakfast":"crepes", "forecast":"stylishly gloomy"};
+//     let data = JSON.stringify(dataObject);
+//     res.end(data);
+// });
 
-server.listen(3000, function(){
-    console.log('Running on port 3000');
-});
+// server.listen(3000, function(){
+//     console.log('Running on port 3000');
+// });

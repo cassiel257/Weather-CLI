@@ -51,12 +51,22 @@ async function get_coordinates(link1){
             const conditions = JSON.stringify(weatherData.current.weather[0].main);
             const description = JSON.stringify(weatherData.current.weather[0].description);
 
+            const future_low = weatherData.daily[1].temp['min'];
+            const conv_future_low = get_temperatures(future_low);
+            const future_high = weatherData.daily[1].temp['max'];
+            const conv_future_high = get_temperatures(future_high);
+
+            const future_weather = JSON.stringify(weatherData.daily[1].weather[0].main);
+        
+            const future = future_weather+', Low:'+conv_future_low+', High: '+conv_future_high;
+
             console.log('Current Weather for'.magenta,place);
             console.log('Temperature: '.magenta, conv_temps);
             console.log('Humidity:'.magenta, humidity+' %');
             console.log('Current conditions:'.magenta, conditions+',', description);
             console.log('The lowest temperature for today will be: '.blue, conv_min);
             console.log('The highest temperature for today will be: '.red, conv_max);
+            console.log('Want to know the future? Tomorrow you can expect:'.magenta,future);
         } else {
             console.log(response2.status, response2.statusText);
         }

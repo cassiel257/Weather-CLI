@@ -68,10 +68,10 @@ async function get_coordinates(link1){
             console.log('The highest temperature for today will be: '.red, conv_max);
             console.log('Want to know the future? Tomorrow you can expect:'.magenta,future);
         } else {
-            console.log(response2.status, response2.statusText);
+            console.log('There was an error:',response2.status, response2.statusText+' Try putting your full location in quotes, ie \'paris,france\''.blue);
         }
     } else {
-        console.log(response1.status, response1.statusText);
+        console.log('There was an error:',response1.status, response1.statusText+' Try putting your full location in quotes, ie \'paris,france\''.red);
     }
 
 };

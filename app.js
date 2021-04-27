@@ -37,25 +37,29 @@ async function get_coordinates(link1){
         const place = JSON.stringify(coordinateData['features'][1].place_name);
 
         const response2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${weather_key}&units=imperial`);
-        const weatherData = await response2.json();
+        if (response2.status >= 200 && response2.status < 400){
+            const weatherData = await response2.json();
 
-        const temperature = JSON.stringify(weatherData.current['temp']);
-        const conv_temps = get_temperatures(temperature);
-        const low=(weatherData.daily[0].temp['min']);
-        const conv_min= get_temperatures(low);
-        const high=(weatherData.daily[0].temp['max']);
-        const conv_max= get_temperatures(high);
+            const temperature = JSON.stringify(weatherData.current['temp']);
+            const conv_temps = get_temperatures(temperature);
+            const low=(weatherData.daily[0].temp['min']);
+            const conv_min= get_temperatures(low);
+            const high=(weatherData.daily[0].temp['max']);
+            const conv_max= get_temperatures(high);
 
-        const humidity = JSON.stringify(weatherData.current.humidity);
-        const conditions = JSON.stringify(weatherData.current.weather[0].main);
-        const description = JSON.stringify(weatherData.current.weather[0].description);
+            const humidity = JSON.stringify(weatherData.current.humidity);
+            const conditions = JSON.stringify(weatherData.current.weather[0].main);
+            const description = JSON.stringify(weatherData.current.weather[0].description);
 
-        console.log('Current Weather for'.magenta,place);
-        console.log('Temperature: '.magenta, conv_temps);
-        console.log('Humidity:'.magenta, humidity+' %');
-        console.log('Current conditions:'.magenta, conditions+',', description);
-        console.log('The lowest temperature for today will be: '.blue, conv_min);
-        console.log('The highest temperature for today will be: '.red, conv_max);
+            console.log('Current Weather for'.magenta,place);
+            console.log('Temperature: '.magenta, conv_temps);
+            console.log('Humidity:'.magenta, humidity+' %');
+            console.log('Current conditions:'.magenta, conditions+',', description);
+            console.log('The lowest temperature for today will be: '.blue, conv_min);
+            console.log('The highest temperature for today will be: '.red, conv_max);
+        } else {
+            console.log(response2.status, response2.statusText);
+        }
     } else {
         console.log(response1.status, response1.statusText);
     }

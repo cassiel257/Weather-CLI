@@ -15,7 +15,7 @@ var place='';
 dotenv.config();
 
 function get_temperatures(fahrenheit_temp){
-    //console.log('fahrenheit input',fahrenheit_temp);
+    console.log('fahrenheit input',fahrenheit_temp);
     var celsius_temp=((fahrenheit_temp/1.8)-32);
     var combined_temps= (fahrenheit_temp) +' °F'+' / ' + (celsius_temp).toFixed(2)+ ' °C';
     return combined_temps;
@@ -68,12 +68,12 @@ async function get_coordinates(link1){
             console.log('The highest temperature for today will be: '.red, conv_max);
             console.log('Want to know the future? Tomorrow you can expect:'.magenta,future);
         } else {
-            console.log('There was an error:',response2.status, response2.statusText+' Try putting your full location in quotes, ie \'paris,france\''.blue);
+            console.log('There was an error:',response2.status, response2.statusText+' Try putting your full location in quotes, ie \'paris france\''.blue);
         }
     } else {
-        console.log('There was an error:',response1.status, response1.statusText+' Try putting your full location in quotes, ie \'paris,france\''.red);
+        console.log('There was an error:',response1.status, response1.statusText+' Try putting your full location in quotes, ie \'paris france\''.red);
     }
 
 };
 
-const data1 = get_coordinates(url);
+const data1 = get_coordinates(url)//.catch(error=>{error.message;});

@@ -1,6 +1,9 @@
 **Your Favorite Weather CLI**
 
 - A simple CLI tool that will return current weather information and a brief forecast.
+  
+
+![Screenshot](screenshot.png)
 
 **Quick Overview**
 

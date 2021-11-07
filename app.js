@@ -15,7 +15,7 @@ var place='';
 dotenv.config();
 
 function get_temperatures(fahrenheit_temp){
-    console.log('fahrenheit input',fahrenheit_temp);
+    // console.log('fahrenheit input',fahrenheit_temp);
     var celsius_temp=((fahrenheit_temp/1.8)-32);
     var combined_temps= (fahrenheit_temp) +' °F'+' / ' + (celsius_temp).toFixed(2)+ ' °C';
     return combined_temps;
@@ -32,15 +32,18 @@ async function get_coordinates(link1){
     const response1 = await fetch(link1);
     if (response1.status >= 200 && response1.status < 400){
         const coordinateData = await response1.json();
-        const lat = JSON.stringify(coordinateData['features'][1].center[0]);
-        const lon = JSON.stringify(coordinateData['features'][1].center[1]);
-        const place = JSON.stringify(coordinateData['features'][1].place_name);
+        const lat = JSON.stringify(coordinateData['features'][0].center[1]);
+
+        const lon = JSON.stringify(coordinateData['features'][0].center[0]);
+
+
+        const place = JSON.stringify(coordinateData['features'][0].place_name);
 
         const response2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${weather_key}&units=imperial`);
         if (response2.status >= 200 && response2.status < 400){
             const weatherData = await response2.json();
 
-            const temperature = JSON.stringify(weatherData.current['temp']);
+            const temperature = (weatherData.current['temp']);
             const conv_temps = get_temperatures(temperature);
             const low=(weatherData.daily[0].temp['min']);
             const conv_min= get_temperatures(low);

@@ -11,6 +11,7 @@
     - Sample command: ```node app berlin```
     - Sample console display: ``` Current Weather for Berlin, Temperature: 82 F/32 C, Humidity: 74%```
     - **Nota bene:** If there are multiple locations with similar names, type your location in quotes to get more exact weather data (ie. ```node app 'paris tennessee'``` to avoid confusion with Paris, France.)
+
 ![Screenshot](screenshot3.png)
 
 **Set Up Instructions**

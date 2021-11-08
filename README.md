@@ -10,7 +10,7 @@
 - Once set up, typing ```node app {location_of_your_choice}``` will return the information you requested.
     - Sample command: ```node app berlin```
     - Sample console display: ``` Current Weather for Berlin, Temperature: 82 F/32 C, Humidity: 74%```
-    - **Nota bene:** If there are multiple locations with similar names, type your location in quotes to get more exact weather data (ie. ```node app 'paris france'``` to avoid confusion with Paris, Tennessee.)
+    - **Nota bene:** If there are multiple locations with similar names, type your location in quotes to get more exact weather data (ie. ```node app 'paris tennessee'``` to avoid confusion with Paris, France.)
 
 **Set Up Instructions**
 - Install the latest version of Node JS.

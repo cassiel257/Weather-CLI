@@ -15,7 +15,6 @@ var place='';
 dotenv.config();
 
 function get_temperatures(fahrenheit_temp){
-    // console.log('fahrenheit input',fahrenheit_temp);
     var celsius_temp=((fahrenheit_temp/1.8)-32);
     var combined_temps= (fahrenheit_temp) +' °F'+' / ' + (celsius_temp).toFixed(2)+ ' °C';
     return combined_temps;
@@ -79,4 +78,4 @@ async function get_coordinates(link1){
 
 };
 
-const data1 = get_coordinates(url)//.catch(error=>{error.message;});
+const data1 = get_coordinates(url).catch(error=>{console.log('There was an error:',error.message, 'Try putting your location in quotes, ie node \'paris france\'' .red)});

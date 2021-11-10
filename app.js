@@ -15,7 +15,7 @@ var place='';
 dotenv.config();
 
 function get_temperatures(fahrenheit_temp){
-    var celsius_temp=((fahrenheit_temp/1.8)-32);
+    var celsius_temp=((fahrenheit_temp-32)/1.8);
     var combined_temps= (fahrenheit_temp) +' °F'+' / ' + (celsius_temp).toFixed(2)+ ' °C';
     return combined_temps;
 };

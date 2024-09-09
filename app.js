@@ -1,4 +1,4 @@
-
+//TODO: Add Sunrise/sunset times and moonrise moonset for current day
 var colors = require('colors');
 
 const entry = process.argv[2];

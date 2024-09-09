@@ -26,3 +26,5 @@
 
 **Questions/Comments**
 - Please reach out with any questions, concerns, or suggestions.
+
+***Sunrise/Sunset information courtesy of https://api.sunrise-sunset.org***

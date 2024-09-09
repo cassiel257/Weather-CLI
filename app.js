@@ -1,4 +1,4 @@
-//TODO: Add sunrise/sunset times and moonrise/moonset for current day
+//Open weather sunset/sunrise times can also be used, and I will most likely switch them out from the other API in the future.
 var colors = require('colors');
 
 const entry = process.argv[2];
@@ -39,10 +39,15 @@ async function get_coordinates(link1){
         const place = JSON.stringify(coordinateData['features'][0].place_name);
 
         const response2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${weather_key}&units=imperial`);
+        
+        
         if (response2.status >= 200 && response2.status < 400){
+            
             const weatherData = await response2.json();
-
+            const timezone=(weatherData.timezone)
+            
             const temperature = (weatherData.current['temp']);
+            
             const conv_temps = get_temperatures(temperature);
             const low=(weatherData.daily[0].temp['min']);
             const conv_min= get_temperatures(low);
@@ -61,19 +66,35 @@ async function get_coordinates(link1){
             const future_weather = JSON.stringify(weatherData.daily[1].weather[0].main);
         
             const future = future_weather+', Low:'+conv_future_low+', High: '+conv_future_high;
+            const response3 = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&tzid=${timezone}`);
 
-            console.log('Current Weather for'.magenta,place);
-            console.log('Temperature: '.magenta, conv_temps);
-            console.log('Humidity:'.magenta, humidity+' %');
-            console.log('Current conditions:'.magenta, conditions+',', description);
-            console.log('The lowest temperature for today will be: '.blue, conv_min);
-            console.log('The highest temperature for today will be: '.red, conv_max);
-            console.log('Want to know the future? Tomorrow you can expect:'.magenta,future);
+           
+            if(response3.status >= 200 && response3.status < 400){
+                const sunriseData=await response3.json();
+                const firstLight=sunriseData.results.civil_twilight_begin
+                const sunrise=sunriseData.results.sunrise
+                const sunset=sunriseData.results.sunset
+                const lastLight=sunriseData.results.civil_twilight_end
+                
+                console.log('Current Weather for'.magenta,place,">","Timezone".magenta,timezone);
+                console.log('Temperature: '.magenta, conv_temps);
+                console.log('Humidity:'.magenta, humidity+' %');
+                console.log('Current conditions:'.magenta, conditions+',', description);
+                console.log('The lowest temperature for today will be: '.cyan, conv_min);
+                console.log('The highest temperature for today will be: '.red, conv_max);
+                console.log("First Light: ".grey, firstLight);
+                console.log("Sunrise: ".yellow, sunrise);
+                console.log("Sunset: ".cyan, sunset);
+                console.log("Last Light: ".grey, lastLight);
+                console.log('Want to know the future? Tomorrow you can expect:'.magenta,future);}
+                else{
+                    console.log('There was an error: ',response3.status,response3.statusText+"Sunrise data not found".grey);
+                }
         } else {
             console.log('There was an error:',response2.status, response2.statusText+' Try putting your full location in quotes, ie \'paris france\''.blue);
         }
     } else {
-        console.log('There was an error:',response1.status, response1.statusText+' Try putting your full location in quotes, ie \'paris france\''.red);
+        console.log('There was an error:',response1.status, response1.statusText+' Try putting your full location in quotes, ie \'paris france\''.yellow);
     }
 
 };

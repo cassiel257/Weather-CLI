@@ -86,7 +86,7 @@ async function get_coordinates(link1){
                 console.log("Sunrise: ".yellow, sunrise);
                 console.log("Sunset: ".cyan, sunset);
                 console.log("Last Light: ".grey, lastLight);
-                console.log('Want to know the future? Tomorrow you can expect:'.magenta,future);}
+                console.log('Tomorrow you can expect:'.magenta,future);}
                 else{
                     console.log('There was an error: ',response3.status,response3.statusText+"Sunrise data not found".grey);
                 }

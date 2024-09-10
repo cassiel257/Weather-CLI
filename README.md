@@ -17,7 +17,7 @@
 **Set Up Instructions**
 - Install the latest version of Node JS.
 - Download the project code to your local machine by using the command 
-  ```git clone https://github.com/cassiel257/soloproject-tier2-chinguweather.git``` (or clicking the green "Code" button on Github and downloading a zip file).
+  ```git clone https://github.com/cassiel257/Weather-CLI.git``` (or clicking the green "Code" button on Github and downloading a zip file).
 - Navigate to the project folder using the command line.
 - Type in the command ```npm install``` to install any additional dependencies.
 - You will need to sign up with two free APIs to receive API keys. They are OpenWeatherMap (https://openweathermap.org/api) and MapBox (https://account.mapbox.com/). These are usually sent to your email shortly after signing up.
@@ -26,3 +26,5 @@
 
 **Questions/Comments**
 - Please reach out with any questions, concerns, or suggestions.
+
+***Sunrise/Sunset information courtesy of https://api.sunrise-sunset.org***

@@ -1,7 +1,16 @@
-//OpenWeather API no longer free, either update API Key for limited use or add in openmeteo
+//Also change geolocation code to openmeteo, as Mapbox does not handle zip/postal codes reliably
+//Then update README to remove Mapbox key +env reqs, and delete env file
 var colors = require('colors');
 
-const entry = process.argv[2];
+let entry = process.argv[2];
+
+if (isNaN(Number(entry)) == false){
+    console.log("A number, likely a zipcode was entered: ",entry)
+    entry = entry+="&types=postcode"
+}
+
+
+
 var greeting = "Welcome to Your Weather CLI!";
 
 console.log("\n ");

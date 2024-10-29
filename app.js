@@ -5,7 +5,7 @@ var colors = require('colors');
 let entry = process.argv[2];
 
 if (isNaN(Number(entry)) == false){
-    console.log("A number, likely a zipcode was entered: ",entry)
+    console.log("A number was entered. Please try the name of your location and country in quotes, instead.",entry)
     entry = entry+="&types=postcode"
 }
 

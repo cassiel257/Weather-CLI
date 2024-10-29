@@ -20,11 +20,12 @@
   ```git clone https://github.com/cassiel257/Weather-CLI.git``` (or clicking the green "Code" button on Github and downloading a zip file).
 - Navigate to the project folder using the command line.
 - Type in the command ```npm install``` to install any additional dependencies.
-- You will need to sign up with two free APIs to receive API keys. They are OpenWeatherMap (https://openweathermap.org/api) and MapBox (https://account.mapbox.com/). These are usually sent to your email shortly after signing up.
-- Save these keys in a .env file using the variable names ```WEATHER_API_KEY``` and ```MAPBOX_API_KEY```. Remember not to push your .env file back to your Github account. Make sure that it is listed in the .gitignore folder.
+- You will need to sign up with the free Mapbox API to receive an API key: (https://account.mapbox.com/). This is usually sent to your email shortly after signing up.
+- Save the mapbox key in an .env file using the variable name ```MAPBOX_API_KEY```. Remember not to push your .env file back to your Github account. Make sure that it is listed in the .gitignore folder.
 - You should now be able to type in a command like ```node app milan``` and see the weather information printed out for you in the console.
 
 **Questions/Comments**
 - Please reach out with any questions, concerns, or suggestions.
 
 ***Sunrise/Sunset information courtesy of https://api.sunrise-sunset.org***
+***Weather data courtesy of Open-Meteo: https://open-meteo.com/***

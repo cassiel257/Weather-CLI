@@ -1,4 +1,4 @@
-//Open weather sunset/sunrise times can also be used, and I will most likely switch them out from the other API in the future.
+//OpenWeather API no longer free, either update API Key for limited use or add in openmeteo
 var colors = require('colors');
 
 const entry = process.argv[2];
@@ -14,9 +14,17 @@ var longitude='';
 var place='';
 dotenv.config();
 
+codes={
+    0:"Clear sky", 1:"Mainly clear",2:"Partly cloudy",3:"Overcast",45:"Fog",48:"depositing rime fog",
+    51:"Light drizzle",53:"Moderate drizzle",55:"Dense drizzle",56:"Light freezing drizzle",57:"Dense freezing drizzle",
+    61:"Slight rain",63:"Moderate rain",65:"Heavy rain",66:"Light freezing rain",67:"Heavy freezing rain",71:"Slight snowfall",
+    73:"Moderate snowfall",75:"Heavy snowfall",77:"Snow grains",80:"Slight rain showers",81:"Moderate rain showers",82:"Violent rain showers",
+    85:"Slight snow showers",86:"Heavy snow showers",95:"Slight to moderate thunderstorm",96:"Thunderstorm with slight hail",97:"Thunderstorm with heavy hail"
+}
+
 function get_temperatures(fahrenheit_temp){
     var celsius_temp=((fahrenheit_temp-32)/1.8);
-    var combined_temps= (fahrenheit_temp) +' °F'+' / ' + (celsius_temp).toFixed(2)+ ' °C';
+    var combined_temps= (fahrenheit_temp).toFixed(2) +' °F'+' / ' + (celsius_temp).toFixed(2)+ ' °C';
     return combined_temps;
 };
 
@@ -91,10 +99,10 @@ async function get_coordinates(link1){
                     console.log('There was an error: ',response3.status,response3.statusText+"Sunrise data not found".grey);
                 }
         } else {
-            console.log('There was an error:',response2.status, response2.statusText+' Try putting your full location in quotes, ie \'paris france\''.blue);
+            console.log('There was an error:',response2.status, response2.statusText+' There was a problem getting the weather for this location. Try putting your full location in quotes, ie \'paris france\''.blue);
         }
     } else {
-        console.log('There was an error:',response1.status, response1.statusText+' Try putting your full location in quotes, ie \'paris france\''.yellow);
+        console.log('There was an error:',response1.status, response1.statusText+' There was a problem getting coordinates for this location. Try putting your full location in quotes, ie \'paris france\''.yellow);
     }
 
 };

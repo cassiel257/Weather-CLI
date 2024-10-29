@@ -22,8 +22,8 @@ codes={
     85:"Slight snow showers",86:"Heavy snow showers",95:"Slight to moderate thunderstorm",96:"Thunderstorm with slight hail",97:"Thunderstorm with heavy hail"
 }
 
-function get_temperatures(fahrenheit_temp){
-    var celsius_temp=((fahrenheit_temp-32)/1.8);
+function get_temperatures(celsius_temp){
+    var fahrenheit_temp=((celsius_temp *1.8)+32);
     var combined_temps= (fahrenheit_temp).toFixed(2) +' °F'+' / ' + (celsius_temp).toFixed(2)+ ' °C';
     return combined_temps;
 };

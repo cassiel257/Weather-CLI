@@ -44,32 +44,36 @@ async function get_coordinates(link1){
         
         if (response2.status >= 200 && response2.status < 400){
             
-            const weatherData = await response2.json();)
+            const weatherData = await response2.json();
             const timezone=(weatherData.timezone)
-            console.log("Timezone",timezone)
+            
             
             const temperature = weatherData['current']['temperature_2m'];
             
             const conv_temps = get_temperatures(temperature);
-            console.log("Temp",conv_temps)
-            // const low=(weatherData.daily[0].temp['min']);
-            // const conv_min= get_temperatures(low);
-            // const high=(weatherData.daily[0].temp['max']);
-            // const conv_max= get_temperatures(high);
+           
+            const low=(weatherData.daily.temperature_2m_min[0]);
+            const conv_min= get_temperatures(low);
+           
+            const high=(weatherData.daily.temperature_2m_max[0]);
+            const conv_max= get_temperatures(high);
+            
 
-            // const humidity = JSON.stringify(weatherData.current.humidity);
-            // const conditions = JSON.stringify(weatherData.current.weather[0].main);
-            const description = JSON.stringify(codes[(weatherData['current']['weather_code'])]);
-            console.log("Weather code description",description)
-
-            // const future_low = weatherData.daily[1].temp['min'];
-            // const conv_future_low = get_temperatures(future_low);
-            // const future_high = weatherData.daily[1].temp['max'];
-            // const conv_future_high = get_temperatures(future_high);
-
-            // const future_weather = JSON.stringify(weatherData.daily[1].weather[0].main);
+            const humidity = JSON.stringify(weatherData.current.relative_humidity_2m);
+            
         
-            // const future = future_weather+', Low:'+conv_future_low+', High: '+conv_future_high;
+            const description = JSON.stringify(codes[(weatherData['current']['weather_code'])]);
+            
+
+            const future_low = weatherData.daily.temperature_2m_min[1];
+            const conv_future_low = get_temperatures(future_low);
+            const future_high = weatherData.daily.temperature_2m_max[1];
+            const conv_future_high = get_temperatures(future_high);
+
+            const future_weather = JSON.stringify(codes[weatherData.daily.weather_code[1]]);
+        
+            const future = future_weather+', Low:'+conv_future_low+', High: '+conv_future_high;
+            
             }
         }
     }

@@ -2,9 +2,9 @@
 var colors = require('colors');
 
 const entry = process.argv[2];
-var greeting = "Welcome to Your Favorite Weather API!";
+var greeting = "Welcome to Your Weather CLI!";
 
-console.log(greeting.bgMagenta);
+console.log("\n ");
 
 const http = require('http');
 const fetch = require('node-fetch');
@@ -98,7 +98,7 @@ async function get_coordinates(link1){
                 console.log("Sunrise: ".yellow, sunrise);
                 console.log("Sunset: ".cyan, sunset);
                 console.log("Last Light: ".grey, lastLight);
-                console.log('Tomorrow you can expect:'.magenta,future);}
+                console.log('Tomorrow you can expect:'.magenta,future,"\n");}
                 else{
                     console.log('There was an error: ',response3.status,response3.statusText+"Sunrise data not found".grey);
                 }

@@ -7,6 +7,13 @@ const dotenv = require('dotenv');
 dotenv.config()
 
 let entry = process.argv[2];
+no_entry=false
+
+if (!entry){
+    no_entry=true
+    //console.log("You didn't give a location.For a weather forecast,please enter a postal code or location name with quotes,like node 90210 or node app \'paris tennessee\'.")
+    
+}
 const mapbox_key = process.env.MAPBOX_API_KEY;
 
 let zip_status=false
@@ -52,6 +59,10 @@ function get_temperatures(celsius_temp){
 
 
 async function get_coordinates(link1){
+    if (!entry){
+        return("You didn't type a location.For a weather forecast,please enter <node app> (without brackets) and a postal code or location name with quotes.\nExamples: node app 90210, node app \'paris tennessee\'.\n")
+        
+    }
     const response1 = await fetch(link1);
     if (response1.status >= 200 && response1.status < 400){
         const coordinateData = await response1.json();
@@ -131,3 +142,7 @@ async function get_coordinates(link1){
 
 const data1 = get_coordinates(url).catch(error=>{console.log('There was an error:',error.message, 'Try entering the zip code or putting your location in quotes, ie node \'paris france\'' .red)});
 
+if (!entry){
+    console.log("You didn't give a location.For a weather forecast,please enter a postal code or location name with quotes,like node 90210 or node app \'paris tennessee\'.")
+    
+}

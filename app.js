@@ -1,13 +1,23 @@
-//Also change geolocation code to openmeteo, as Mapbox does not handle zip/postal codes reliably
-//Then update README to remove Mapbox key +env reqs, and delete env file
+//Add async geolocation code for openmeteo, as Mapbox does not handle zip/postal codes reliably, either/or. Maybe ternary variable assignment
 var colors = require('colors');
 
 let entry = process.argv[2];
+const mapbox_key = process.env.MAPBOX_API_KEY;
+
+let zip_status=false
+
+const zip_url=`https://geocoding-api.open-meteo.com/v1/search?name=${entry}&count=10&language=en&format=json`
+const mapbox_url= `https://api.mapbox.com/geocoding/v5/mapbox.places/${entry}.json?access_token=${mapbox_key}`;
+
+
 
 if (isNaN(Number(entry)) == false){
-    console.log("A number was entered. Please try the name of your location and country in quotes, instead.",entry)
-    entry = entry+="&types=postcode"
-}
+    zip_status=true
+    console.log("A number was entered.",entry)
+    
+} else{console.log("Word location entered.",entry)}
+
+const url= zip_status?zip_url:mapbox_url
 
 
 
@@ -38,20 +48,22 @@ function get_temperatures(celsius_temp){
 };
 
 
-const mapbox_key = process.env.MAPBOX_API_KEY;
-const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${entry}.json?access_token=${mapbox_key}`;
+
+//const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${entry}.json?access_token=${mapbox_key}`;
 
 
 async function get_coordinates(link1){
     const response1 = await fetch(link1);
+    console.log("coordinates response",response1.status, response1.statusText,response1.text)
+    console.log("Link",link1.slice(0,20))
     if (response1.status >= 200 && response1.status < 400){
         const coordinateData = await response1.json();
-        const lat = JSON.stringify(coordinateData['features'][0].center[1]);
+        const lat = zip_status?JSON.stringify(coordinateData['results'][0]['latitude']):JSON.stringify(coordinateData['features'][0].center[1]);
 
-        const lon = JSON.stringify(coordinateData['features'][0].center[0]);
+        const lon = zip_status?JSON.stringify(coordinateData['results'][0]['longitude']):JSON.stringify(coordinateData['features'][0].center[0]);
 
 
-        const place = JSON.stringify(coordinateData['features'][0].place_name);
+        const place = zip_status?JSON.stringify(coordinateData['results'][0]['name']):JSON.stringify(coordinateData['features'][0].place_name);
 
         const response2 = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=3&timezone=auto`);
         
@@ -120,4 +132,6 @@ async function get_coordinates(link1){
 
 };
 
+//const url= zip_status?zip_url:mapbox_url
 const data1 = get_coordinates(url).catch(error=>{console.log('There was an error:',error.message, 'Try entering the zip code or putting your location in quotes, ie node \'paris france\'' .red)});
+

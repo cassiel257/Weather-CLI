@@ -20,6 +20,9 @@
     "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "fetch": "^1.1.0",
-    "node-fetch": "^2.6.1"
+    "module-alias": "^2.2.3",
+    "node-fetch": "^2.6.1",
+    "punycode": "^2.3.1",
+    "punycode.js": "^2.3.1"
   }
 }

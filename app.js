@@ -1,4 +1,8 @@
 //Add async geolocation code for openmeteo, as Mapbox does not handle zip/postal codes reliably, either/or. Maybe ternary variable assignment
+const moduleAlias = require('module-alias');
+moduleAlias.addAlias('punycode', 'punycode/');
+
+
 var colors = require('colors');
 const http = require('http');
 const fetch = require('node-fetch');

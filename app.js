@@ -143,6 +143,6 @@ async function get_coordinates(link1){
 const data1 = get_coordinates(url).catch(error=>{console.log('There was an error:',error.message, 'Try entering the zip code or putting your location in quotes, ie node \'paris france\'' .red)});
 
 if (!entry){
-    console.log("You didn't give a location.For a weather forecast,please enter a postal code or location name with quotes,like node 90210 or node app \'paris tennessee\'.")
+    console.log("You didn't type a location.For a weather forecast,please enter <node app> (without brackets) and a postal code or location name with quotes.\nExamples: node app 90210, node app \'paris tennessee\'.\n")
     
 }

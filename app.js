@@ -1,5 +1,10 @@
 //Add async geolocation code for openmeteo, as Mapbox does not handle zip/postal codes reliably, either/or. Maybe ternary variable assignment
 var colors = require('colors');
+const http = require('http');
+const fetch = require('node-fetch');
+const dotenv = require('dotenv');
+
+dotenv.config()
 
 let entry = process.argv[2];
 const mapbox_key = process.env.MAPBOX_API_KEY;
@@ -13,9 +18,8 @@ const mapbox_url= `https://api.mapbox.com/geocoding/v5/mapbox.places/${entry}.js
 
 if (isNaN(Number(entry)) == false){
     zip_status=true
-    console.log("A number was entered.",entry)
     
-} else{console.log("Word location entered.",entry)}
+}
 
 const url= zip_status?zip_url:mapbox_url
 
@@ -25,13 +29,10 @@ var greeting = "Welcome to Your Weather CLI!";
 
 console.log("\n ");
 
-const http = require('http');
-const fetch = require('node-fetch');
-const dotenv = require('dotenv');
+
 var latitude='';
 var longitude='';
 var place='';
-dotenv.config();
 
 codes={
     0:"Clear sky", 1:"Mainly clear",2:"Partly cloudy",3:"Overcast",45:"Fog",48:"depositing rime fog",
@@ -49,13 +50,9 @@ function get_temperatures(celsius_temp){
 
 
 
-//const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${entry}.json?access_token=${mapbox_key}`;
-
 
 async function get_coordinates(link1){
     const response1 = await fetch(link1);
-    console.log("coordinates response",response1.status, response1.statusText,response1.text)
-    console.log("Link",link1.slice(0,20))
     if (response1.status >= 200 && response1.status < 400){
         const coordinateData = await response1.json();
         const lat = zip_status?JSON.stringify(coordinateData['results'][0]['latitude']):JSON.stringify(coordinateData['features'][0].center[1]);
@@ -132,6 +129,5 @@ async function get_coordinates(link1){
 
 };
 
-//const url= zip_status?zip_url:mapbox_url
 const data1 = get_coordinates(url).catch(error=>{console.log('There was an error:',error.message, 'Try entering the zip code or putting your location in quotes, ie node \'paris france\'' .red)});
 
